@@ -20,6 +20,7 @@
 
 require('vendor/autoload.php');
 
-$c = assegai\Utils::bootstrapContainer();
+$c = new etenil\AssegaiInjector\Container();
+$c->loadConfFile(__DIR__ . '/dependencies.conf');
 $framework = $c->give('framework')->setConfigPath(__DIR__ . '/conf.php');
 $framework->run($c->give('httpEvent')->loadGlobals());

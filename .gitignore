@@ -3,5 +3,6 @@
 *.swap
 vendor
 conf.php
+.DS_Store
 apps
 

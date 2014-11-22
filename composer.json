@@ -2,21 +2,28 @@
     "name": "etenil/assegai",
     "description": "A full MVC framework for PHP.",
     "keywords": ["framework"],
-    "homepage": "http://github.com/Etenil/atlatl",
+    "homepage": "http://github.com/Etenil/assegai",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Guillaume 'Etenil' Pasquet",
             "email": "boss@etenil.net",
-            "homepage": "http://blog.etenil.net"
+            "homepage": "http://etenil.net"
+        }
+    ],
+    "repositories": [
+        {
+            "url": "https://github.com/Etenil/AssegaiInjector.git",
+            "type": "git"
+        },
+        {
+            "url": "https://github.com/etenil/AssegaiEventCore.git",
+            "type": "git"
         }
     ],
     "require": {
-    },
-    "autoload": {
-        "psr-0": {
-            "assegai\\": "src/"
-        }
+        "etenil/AssegaiInjector": "dev-master",
+        "etenil/AssegaiEventCore": "dev-master"
     }
 }
