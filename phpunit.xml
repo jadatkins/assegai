@@ -13,8 +13,8 @@
 
     <testsuites>
         <testsuite name="Assegai Test Suite">
-            <directory>./src/assegai/components/*/*/tests/</directory>
-            <directory>./src/assegai/modules/*/*/tests/</directory>
+            <directory>./src/assegai/components/*/tests/</directory>
+            <directory>./src/assegai/modules/*/tests/</directory>
         </testsuite>
     </testsuites>
 
@@ -29,8 +29,8 @@
         <whitelist>
             <directory>./src/assegai/</directory>
             <exclude>
-                <directory>./src/assegai/components/*/*/tests/</directory>
-                <directory>./src/assegai/modules/*/*/tests/</directory>
+                <directory>./src/assegai/components/*/tests/</directory>
+                <directory>./src/assegai/modules/*/tests/</directory>
             </exclude>
         </whitelist>
     </filter>
