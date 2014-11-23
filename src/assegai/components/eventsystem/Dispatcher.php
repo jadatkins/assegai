@@ -1,25 +1,13 @@
 <?php
 
-namespace assegai\eventsystem;
+namespace assegai\components\eventsystem;
 
 class Dispatcher
 {
     protected static $instance;
     protected $handlers;
     
-    /**
-     * This is a singleton class.
-     */
-    function getInstance()
-    {
-        if(!self::$instance || !is_object(self::$instance)) {
-            self::$instance = new self();
-        }
-        
-        return self::$instance;
-    }
-    
-    protected function __construct()
+    function __construct()
     {
         $this->handlers = array();
     }

@@ -4,7 +4,7 @@ namespace assegai\components\config\tests;
 
 use assegai\components\config;
 
-class DeleteMeTest extends \PHPUnit_Framework_TestCase
+class ConfigTest extends \PHPUnit_Framework_TestCase
 {
     public function testSetAll()
     {

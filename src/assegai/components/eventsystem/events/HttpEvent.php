@@ -1,6 +1,6 @@
 <?php
 
-namespace assegai\eventsystem\events;
+namespace assegai\components\eventsystem\events;
 
 class HttpEvent extends Event implements IEvent
 {
