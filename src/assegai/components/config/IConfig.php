@@ -28,42 +28,11 @@
 
 namespace assegai\components\config;
 
-class Config implements IConfig
+interface IConfig
 {
-    protected $settings;
-    
-    public function loadFile($path, $varname = 'conf') {
-        if(!file_exists($path)) {
-            throw new \Exception("File `$path' doesn't exist.");
-        }
-
-        $conf = array();
-        require($path);
-
-        return $this->addArray($$varname);
-    }
-
-    public function get($defname, $default = null)
-    {
-        if(isset($this->settings[$defname])) {
-            return $this->settings[$defname];
-        } else {
-            return $default;
-        }
-    }
-    
-    public function set($defname, $value)
-    {
-        $this->settings[$defname] = $value;
-    }
-
-    public function getAll()
-    {
-        return $this->settings;
-    }
-    
-    public function setAll(array $definitions)
-    {
-        $this->settings = $definitions;
-    }
+    public function loadFile($filename);
+    public function get($key);
+    public function set($key, $val);
+    public function getAll();
+    public function setAll(array $definitions);
 }
