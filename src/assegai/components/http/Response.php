@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 
-namespace assegai;
+namespace assegai\components\http;
 
 class Response
 {

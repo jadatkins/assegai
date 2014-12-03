@@ -1,8 +1,10 @@
 <?php
 
-namespace assegai\components\eventsystem\events;
+namespace assegai\components\http;
 
-class HttpEvent extends Event implements IEvent
+use assegai\components\events;
+
+class HttpEvent extends events\Event implements events\IEvent
 {
     protected $type = 'http';
     

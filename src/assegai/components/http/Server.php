@@ -26,7 +26,7 @@
  * THE SOFTWARE.
  */
 
-namespace assegai;
+namespace assegai\components\http;
 
 class Server 
 {
@@ -95,11 +95,11 @@ class Server
      * Constructs the server object.
      * @param array $server is a server state array; typically $_SERVER.
      */
-	protected function __construct()
-	{
-		$this->parsevars($_SERVER);
+    protected function __construct()
+    {
+        $this->parsevars($_SERVER);
         $this->prefix = '';
-	}
+    }
 
     /**
      * Yes, this is a singleton...
