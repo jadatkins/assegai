@@ -26,7 +26,9 @@
  * THE SOFTWARE.
  */
 
-namespace assegai\injector;
+namespace assegai\components\injector;
+
+use assegai\components\injector\exceptions;
 
 /**
  * Dependency injector for assegai.
@@ -44,7 +46,7 @@ class Container {
     /**
      * Defines a new instanciation function.
      */
-    public function register(DependenciesDefinition $def)
+    public function register(Definition $def)
     {
         $this->definitions[$def->getName()] = $def;
     }
@@ -61,7 +63,9 @@ class Container {
             $this->loadConf($dependencies);
         }
         else {
-            throw new \Exception("Failed to load dependencies from file $filepath.");
+            throw new exceptions\DefinitionsFileLoadingException(
+                "Failed to load dependencies from file $filepath."
+            );
         }
     }
 
@@ -71,7 +75,7 @@ class Container {
     public function loadConf(array $conf)
     {
         foreach($conf as $full_def) {
-            $def = DependenciesDefinition::fromArray($full_def);
+            $def = Definition::fromArray($full_def);
 
             $this->register($def);
         }
@@ -96,7 +100,9 @@ class Container {
             if(is_object($this->mother)) {
                 return $this->mother->give($def);
             } else {
-                throw new \Exception("Couldn't find definition for $def.");
+                throw new exceptions\UnknownDefinitionException(
+                    "Couldn't find definition for $def."
+                );
             }
         }
 
