@@ -162,6 +162,10 @@ class Controller implements IController
         if($var_list === NULL) {
             $var_list = array(); // Avoids notices.
         }
+
+        $release_signature = $GLOBALS['releaseSignature'];
+        $var_list['cacheBustingString'] = $release_signature ? '?'.$release_signature : '?'.(new \DateTime())->format('U');
+
         $vars = (object)$var_list;
         $blocks = (object)$block_list;
 
