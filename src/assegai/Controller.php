@@ -163,8 +163,16 @@ class Controller implements IController
             $var_list = array(); // Avoids notices.
         }
 
-        $release_signature = $GLOBALS['releaseSignature'];
-        $var_list['cacheBustingString'] = $release_signature ? '?'.$release_signature : '?'.(new \DateTime())->format('U');
+        if(empty($GLOBALS['releaseSignature'])) {
+            $release_signature = time();
+        }
+        elseif(isset($_SERVER['APPLICATION_ENV']) && $_SERVER['APPLICATION_ENV'] == 'development') {
+            $release_signature = time();
+        }
+        else {
+            $release_signature = $GLOBALS['releaseSignature'];
+        }
+        $var_list['cacheBustingString'] = '?' . $release_signature;
 
         $vars = (object)$var_list;
         $blocks = (object)$block_list;
