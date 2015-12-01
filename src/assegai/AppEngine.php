@@ -379,19 +379,21 @@ namespace assegai {
 
                 $this->modules->preRequest($obj, $request);
 
-                if(method_exists($obj, 'preRequest')) {
-                    $obj->preRequest();
-                }   
+                if (method_exists($obj, 'preRequest')) {
+                    $response = $obj->preRequest();
+                }
 
-                if(method_exists($obj, $method)) {
-                    $response = call_user_func_array(array($obj, $method), $params);
-                    if(method_exists($obj, 'postRequest'))
-                        $response = $obj->postRequest($response);
-                    if($obj->callNewController) {
-                        $response = $this->process(new routing\RouteCall($obj->callNewController['app'], $obj->callNewController['controller'].'::'.$obj->callNewController['function'], $obj->callNewController['args']), $request)['response'];
+                if (is_null($response)) {
+                    if(method_exists($obj, $method)) {
+                        $response = call_user_func_array(array($obj, $method), $params);
+                        if(method_exists($obj, 'postRequest'))
+                            $response = $obj->postRequest($response);
+                        if($obj->callNewController) {
+                            $response = $this->process(new routing\RouteCall($obj->callNewController['app'], $obj->callNewController['controller'].'::'.$obj->callNewController['function'], $obj->callNewController['args']), $request)['response'];
+                        }
+                    } else {
+                        throw new \BadMethodCallException("Method '$method' not found in class '$class'.");
                     }
-                } else {
-                    throw new \BadMethodCallException("Method '$method' not found in class '$class'.");
                 }
             } else {
                 throw new exceptions\NoHandlerException("Class '$class' not found.");
