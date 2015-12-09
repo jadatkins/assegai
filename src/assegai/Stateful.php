@@ -231,12 +231,14 @@ class Stateful
             }
         }
 
-        foreach($this->cookievars as $cookiename => $cookieval) {
-            if($cookieval === null) {
-                setcookie($cookiename, $cookieval, time() - $this->cookies_max_age, '/');
-            }
-            else {
-                setcookie($cookiename, $cookieval, time() + $this->cookies_max_age, '/');
+        if(!headers_sent()) {
+            foreach($this->cookievars as $cookiename => $cookieval) {
+                if($cookieval === null) {
+                    setcookie($cookiename, $cookieval, time() - $this->cookies_max_age, '/');
+                }
+                else {
+                    setcookie($cookiename, $cookieval, time() + $this->cookies_max_age, '/');
+                }
             }
         }
 	}
