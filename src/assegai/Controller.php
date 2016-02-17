@@ -172,7 +172,7 @@ class Controller implements IController
         else {
             $release_signature = $GLOBALS['releaseSignature'];
         }
-        $var_list['cacheBustingString'] = '?' . $release_signature;
+        $var_list['cacheBustingString'] = '?v='.$release_signature;
 
         $vars = (object)$var_list;
         $blocks = (object)$block_list;
