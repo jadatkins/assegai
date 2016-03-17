@@ -390,7 +390,7 @@ namespace assegai {
                         $response = call_user_func_array(array($obj, $method), $params);
                         if(method_exists($obj, 'postRequest'))
                             $response = $obj->postRequest($response);
-                        if($obj->callNewController) {
+                        if(isset($obj->callNewController)) {
                             $response = $this->process(new routing\RouteCall($obj->callNewController['app'], $obj->callNewController['controller'].'::'.$obj->callNewController['function'], $obj->callNewController['args']), $request)['response'];
                         }
                     } else {
