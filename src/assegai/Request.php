@@ -28,6 +28,8 @@
 
 namespace assegai;
 
+use assegai\exceptions\FileUploadError;
+
 class Request extends Stateful
 {
     /** Requested route. */
@@ -337,7 +339,7 @@ class Request extends Stateful
         // Several files uploaded with the same name like uploads[].
         if(is_array($_FILES[$slot_name]['name'])) {
             if(!is_dir($target)) {
-                throw new Exception("Target `$target' must be a directory for several files.");
+                throw new \Exception("Target `$target' must be a directory for several files.");
             }
 
             $return = array();
